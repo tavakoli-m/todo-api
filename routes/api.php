@@ -10,4 +10,5 @@ Route::get('/user', function (Request $request) {
 
 Route::prefix('v1')->group(function (){
     Route::post('/register',\App\Http\Controllers\V1\Auth\RegisterController::class);
+    Route::post('/login',\App\Http\Controllers\V1\Auth\LoginController::class);
 });
