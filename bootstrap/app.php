@@ -20,4 +20,8 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->shouldRenderJsonWhen(fn() => true);
+
+        $exceptions->render(function (\Illuminate\Validation\ValidationException $exception) {
+            return \App\Http\Services\ApiResponse\Facades\ApiResponse::withMessage($exception->getMessage())->withErrors($exception->errors())->withStatus(422)->send();
+        });
     })->create();
