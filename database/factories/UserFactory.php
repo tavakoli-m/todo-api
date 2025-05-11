@@ -20,7 +20,8 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'email' => fake()->safeEmail(),
+            'password' => Hash::make('password'),
         ];
     }
 }
